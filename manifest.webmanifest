@@ -1,0 +1,26 @@
+{
+  "name": "Midnight Felt",
+  "short_name": "Felt",
+  "description": "A poker-hand roguelike deckbuilder. Six antes, eighteen rounds, one deck.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#0b1f1d",
+  "theme_color": "#0b1f1d",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Midnight Felt">
+  <rect width="512" height="512" fill="#0b1f1d" />
+  <rect x="126" y="136" width="180" height="252" rx="18" fill="#fbf7ef" transform="rotate(-10 216 262)" />
+  <rect x="236" y="150" width="180" height="252" rx="18" fill="#fbf7ef" transform="rotate(8 326 276)" />
+  <text
+    x="330"
+    y="306"
+    font-family="Georgia, serif"
+    font-size="132"
+    text-anchor="middle"
+    fill="#e0344a"
+  >♥</text>
+</svg>
