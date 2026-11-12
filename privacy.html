@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b1f1d" />
+    <meta name="description" content="Midnight Felt privacy notice: what the daily stores, what it does not, and how to export or erase it." />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <title>Privacy — Midnight Felt</title>
+    <!--
+      Static page, no scripts (§5.9 T19). Deploy prerequisite: replace the
+      contact placeholder below with a real address before going live.
+    -->
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1f1d;
+        --panel: #102b28;
+        --text: #e8f2ef;
+        --dim: #9db3ae;
+        --accent: #f2c14e;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0 auto;
+        max-width: 44rem;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.6 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 4px; }
+      h2 { font-size: 1.1rem; margin: 32px 0 8px; color: var(--accent); }
+      p, li { color: var(--text); }
+      .sub { color: var(--dim); margin: 0 0 24px; }
+      ul { padding-left: 20px; }
+      li + li { margin-top: 6px; }
+      a { color: var(--accent); }
+      .back {
+        display: inline-block;
+        margin-top: 40px;
+        padding: 10px 18px;
+        border: 1px solid var(--dim);
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      .note {
+        background: var(--panel);
+        border-radius: 10px;
+        padding: 14px 16px;
+        color: var(--dim);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy — Midnight Felt</h1>
+    <p class="sub">Last updated 12 November 2026.</p>
+
+    <p>
+      The daily run can be ranked by an optional online service. This page says exactly what
+      that service stores, what it never stores, and how to get your data back or delete it.
+      If you play offline, or open the single-file build, nothing leaves your browser.
+    </p>
+
+    <h2>What we store</h2>
+    <ul>
+      <li>
+        <strong>A random player id and secret.</strong> When you first create a player, the
+        server generates a pseudonymous id and a secret. The secret is shown to you once and
+        kept in your browser. The server stores only a SHA-256 hash of it. Neither value is
+        linked to your name, email, or any account, because there is no account.
+      </li>
+      <li>
+        <strong>A display name, only if you set one.</strong> Names are optional, limited to
+        3–16 characters, and shown only to friends you accept.
+      </li>
+      <li>
+        <strong>Your daily starts and results.</strong> The day key, when you started, and the
+        outcome the server computes by replaying your actions: rounds cleared, score, win or
+        loss, and when it was recorded.
+      </li>
+      <li>
+        <strong>A coarse score bucket.</strong> Results go into an aggregate histogram
+        (day, rounds, bucket, count) that produces the “better than X%” figure. The histogram
+        has no player ids in it.
+      </li>
+      <li>
+        <strong>A fair-play flag.</strong> A result can be marked as reviewed when it looks
+        automated. Flagged results are kept but left out of the histogram.
+      </li>
+    </ul>
+
+    <h2>What we do not store</h2>
+    <ul>
+      <li>No email address, password, phone number, or real name.</li>
+      <li>No IP addresses in our database. Rate limits are counted briefly at Cloudflare’s edge (10–60 seconds) and are not persisted by us.</li>
+      <li>No cookies, no advertising or analytics trackers, no third-party profiling.</li>
+      <li>No action logs beyond the run you submit: they are replayed once and not stored.</li>
+    </ul>
+
+    <h2>Where data lives</h2>
+    <p>
+      The service runs on Cloudflare Workers and stores data in Cloudflare D1. Cloudflare
+      processes requests on our behalf as a hosting provider. Your game saves, settings and
+      player secret are kept in your own browser’s local storage; clearing site data removes
+      them. The secret is sent only in an <code>Authorization</code> header, never in a URL.
+    </p>
+
+    <h2>Percentiles</h2>
+    <p>
+      The percentile is computed from aggregate counts only. Other players cannot see your
+      results, and you cannot see theirs, except through the optional friends board, which
+      shows a friend’s name and daily result only after you have both finished that day.
+    </p>
+
+    <h2>Fair play</h2>
+    <p>
+      For the ranked daily, the game engine runs in your browser. That means a determined
+      player could simulate the day ahead of time and submit an optimal line. We reduce this
+      with one ranked attempt per player per day, a server-side replay that must match, and
+      review of suspiciously fast or extreme results. It is not used to identify anyone, and
+      the percentile is meant to be a casual comparison.
+    </p>
+
+    <h2>Your choices</h2>
+    <ul>
+      <li>
+        <strong>Export.</strong> The game can download everything stored about you (player id,
+        name if set, and your results) as JSON.
+      </li>
+      <li>
+        <strong>Erase.</strong> Deleting your player removes the player row, every start and
+        result, and subtracts your results from the histogram in one atomic step. This cannot
+        be undone. To keep your streak statistics, the game also keeps a local copy in your
+        browser; clear site data to remove that too.
+      </li>
+      <li>
+        <strong>Stay offline.</strong> Decline ranked play, or use the single-file build, and
+        no data is sent anywhere.
+      </li>
+    </ul>
+
+    <h2>Retention</h2>
+    <p>
+      Starts and results older than 400 days are deleted automatically by a daily job.
+      Aggregate histogram rows survive only as counts for days that still have results.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      The game is not directed at children under 13, and the online service has no accounts to
+      create beyond a random player id.
+    </p>
+
+    <h2>Changes and contact</h2>
+    <p>
+      If this notice changes, the date at the top changes with it. Questions or requests about
+      your data: <a href="mailto:privacy@example.com">privacy@example.com</a>.
+    </p>
+
+    <p class="note">
+      This notice describes the shipped behaviour of the online daily: a pseudonymous id, your
+      results, an aggregate histogram, export, deletion, and 400-day retention.
+    </p>
+
+    <a class="back" href="./">← Back to the game</a>
+  </body>
+</html>
